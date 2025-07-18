@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Otika - Admin Dashboard Template</title>
+  <title>Jawaaf</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="/assets/css/app.min.css">
   <!-- Template CSS -->
@@ -34,11 +34,10 @@
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
-      <nav class="navbar navbar-expand-lg main-navbar sticky">
-        <div class="form-inline mr-auto">
-          <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
-									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+      <nav class="sticky navbar navbar-expand-lg main-navbar">
+        <div class="mr-auto form-inline">
+          <ul class="mr-3 navbar-nav">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg collapse-btn"> <i data-feather="align-justify"></i></a></li>
             <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
                 <i data-feather="maximize"></i>
               </a></li>
@@ -57,27 +56,26 @@
                 </div>
               </div>
               <div class="dropdown-list-content dropdown-list-message">
-                <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-											text-white"> <img alt="image" src="/assets/img/users/user-1.png" class="rounded-circle">
+                <a href="#" class="dropdown-item"> <span class="text-white dropdown-item-avatar"> <img alt="image" src="/assets/img/users/user-1.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user">John
                       Deo</span>
                     <span class="time messege-text">Please check your mail !!</span>
                     <span class="time">2 Min Ago</span>
                   </span>
-                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
+                </a> <a href="#" class="dropdown-item"> <span class="text-white dropdown-item-avatar">
                     <img alt="image" src="/assets/img/users/user-2.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
                       Smith</span> <span class="time messege-text">Request for leave
                       application</span>
                     <span class="time">5 Min Ago</span>
                   </span>
-                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
+                </a> <a href="#" class="dropdown-item"> <span class="text-white dropdown-item-avatar">
                     <img alt="image" src="/assets/img/users/user-5.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user">Jacob
                       Ryan</span> <span class="time messege-text">Your payment invoice is
                       generated.</span> <span class="time">12 Min Ago</span>
                   </span>
-                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
+                </a> <a href="#" class="dropdown-item"> <span class="text-white dropdown-item-avatar">
                     <img alt="image" src="/assets/img/users/user-4.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user">Lina
                       Smith</span> <span class="time messege-text">hii John, I have upload
@@ -85,7 +83,7 @@
                       related to task.</span> <span class="time">30
                       Min Ago</span>
                   </span>
-                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
+                </a> <a href="#" class="dropdown-item"> <span class="text-white dropdown-item-avatar">
                     <img alt="image" src="/assets/img/users/user-3.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user">Jalpa
                       Joshi</span> <span class="time messege-text">Please do as specify.
@@ -93,7 +91,7 @@
                       know if you have any query.</span> <span class="time">1
                       Days Ago</span>
                   </span>
-                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
+                </a> <a href="#" class="dropdown-item"> <span class="text-white dropdown-item-avatar">
                     <img alt="image" src="/assets/img/users/user-2.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
                       Smith</span> <span class="time messege-text">Client Requirements</span>
@@ -101,7 +99,7 @@
                   </span>
                 </a>
               </div>
-              <div class="dropdown-footer text-center">
+              <div class="text-center dropdown-footer">
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
@@ -113,8 +111,7 @@
               <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">{{Auth::user()->name}}</div>
-              <a href="{{route('profile.edit')}}" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
+              <a href="{{route('profile.edit')}}" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile
               </a>
               <div class="dropdown-divider"></div>
 
@@ -178,7 +175,7 @@
               <div class="p-15 border-bottom">
                 <h6 class="font-medium m-b-10">Color Theme</h6>
                 <div class="theme-setting-options">
-                  <ul class="choose-theme list-unstyled mb-0">
+                  <ul class="mb-0 choose-theme list-unstyled">
                     <li title="white" class="active">
                       <div class="white"></div>
                     </li>
@@ -223,7 +220,7 @@
                   </label>
                 </div>
               </div>
-              <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
+              <div class="p-3 mt-4 mb-4 align-center rt-sidebar-last-ele">
                 <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
                   <i class="fas fa-undo"></i> Restore Default
                 </a>
