@@ -15,11 +15,12 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return[
+             "id"=> $this->id,
             "title"=> $this->title,
             "slug"=> $this->instagram_url,
              "meta_keywords"=> $this->meta_keywords,
              "meta_description"=> $this->meta_description,
-             "articles"=> $this->articles,
+             "articles"=>  ArticleResource::collection($this->articles),
         ];
     }
 }

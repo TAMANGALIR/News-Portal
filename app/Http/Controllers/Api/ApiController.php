@@ -11,6 +11,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
@@ -33,6 +34,13 @@ class ApiController extends Controller
         return ArticleResource::collection($latest_articles);
     }
 
+    // ✅ Fixed: Accept article ID from route
+    public function article($id)
+    {
+        $article = Article::findOrFail($id);
+        return new ArticleResource($article);
+    }
+
     public function trending_articles()
     {
         $trending_articles = Article::orderBy('views', 'desc')->limit(5)->get();
@@ -42,43 +50,81 @@ class ApiController extends Controller
     public function categories()
     {
         $categories = Category::all();
-        return CategoryResource::collection($categories); // Use correct resource
+        return CategoryResource::collection($categories);
     }
 
     public function category(Request $request)
-{
-    $id = $request->id; // get the ID from the request
+    {
 
-    $validator = Validator::make($request->all(), [
-        "title" => "required|unique:categories,title,$id",
-        "slug" => "required|unique:categories,slug,$id",
-    ]);
+       return Auth::user();
+        $validator = Validator::make($request->all(), [
+            "title" => "required|unique:categories,title",
+            "slug" => "required|unique:categories,slug",
+        ]);
 
-    if ($validator->fails()) {
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "message" => $validator->errors()
+            ]);
+        }
+
+        $category = new Category();
+
+        if (!$category) {
+            return response()->json([
+                "success" => false,
+                "message" => "Category not found"
+            ], 404);
+        }
+
+        $category->title = $request->title;
+        $category->slug = $request->slug;
+        $category->meta_keywords = $request->keywords;
+        $category->meta_description = $request->description;
+        $category->save();
+
         return response()->json([
-            "success" => false,
-            "message" => $validator->errors()
+            "success" => true,
+            "message" => "Category Created Successfully"
         ]);
     }
+       public function category_edit(Request $request, $id)
+    {
 
-    $category = Category::find($id);
+        $validator = Validator::make($request->all(), [
+            "title" => "required",
+            "slug" => "required",
+        ]);
 
-    if (!$category) {
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "message" => $validator->errors()
+            ]);
+        }
+
+
+        $category = Category::find($id);
+        $category->title = $request->title;
+        $category->slug = $request->slug;
+        $category->meta_keywords = $request->keywords;
+        $category->meta_description = $request->description;
+        $category->save();
+
         return response()->json([
-            "success" => false,
-            "message" => "Category not found"
-        ], 404);
+            "success" => true,
+            "message" => "Category Updated Successfully"
+        ]);
     }
+      public function category_delete( $id)
+    {
+        $category = Category::find($id);
+        $category->delete();
 
-    $category->title = $request->title;
-    $category->slug = $request->slug;
-    $category->meta_keywords = $request->keywords;
-    $category->meta_description = $request->description;
-    $category->save();
-
-    return response()->json([
-        "success" => true,
-        "message" => "Category Updated Successfully"
-    ]);
-}
+        return response()->json([
+            "success" => true,
+            "message" => "Category Deleted Successfully"
+        ]);
+    }
 }
