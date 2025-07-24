@@ -13,6 +13,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserResource extends Resource
 {
@@ -24,23 +26,21 @@ class UserResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
+          ->schema([
+    Forms\Components\TextInput::make('name')
+        ->required()
+        ->maxLength(255),
+    Forms\Components\TextInput::make('email')
+        ->email()
+        ->required()
+        ->maxLength(255),
+
                         CheckboxList::make('roles')
                     ->relationship('roles','name')
                     ->columnSpanFull()
                     ->required()
                     ->columns(4)
                     ->bulkToggleable()
-
-
-
             ]);
     }
 
@@ -54,8 +54,6 @@ class UserResource extends Resource
             Tables\Columns\TextColumn::make('email')
                 ->searchable()
                 ->copyable(),
-             Tables\Columns\TextColumn::make('password')
-                ->searchable(),
 
 
             Tables\Columns\TextColumn::make('created_at')
